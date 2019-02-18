@@ -10,9 +10,10 @@
         <table class="table table-striped">
             <tbody>
                 <tr>
-                    <th>产品</th>
-                    <th>产品</th>
-                    <th>首页显示</th>
+                    <th>产品名称</th>
+                    <th>产品备注</th>
+                    <th>上架</th>
+                    <th>价格</th>
                     <th>排序</th>
                     <th>操作</th>
                 </tr>
@@ -25,6 +26,7 @@
                     {{else}}
                     <td>否</td>
                     {{/if}}
+                    <td>{{$value.price}}</td>
                     <td>{{$value.sort_order}}</td>
 
                     <td>
