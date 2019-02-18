@@ -1,0 +1,41 @@
+{{ include '../common/header.html'}}
+<div class="container">
+    <div class="jumbotron">
+        <div class="container">
+            <h2>产品管理</h2>
+            <p>方便简单的产品管理页面 ...</p>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>产品</th>
+                    <th>产品</th>
+                    <th>首页显示</th>
+                    <th>排序</th>
+                    <th>操作</th>
+                </tr>
+                {{each produits}}
+                <tr>
+                    <td>{{$value.name}}</td>
+                    <td>{{$value.desc}}</td>
+                    {{if($value.is_on_sale)}}
+                    <td>是</td>
+                    {{else}}
+                    <td>否</td>
+                    {{/if}}
+                    <td>{{$value.sort_order}}</td>
+
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="/admin/produit/edit?id={{@$value._id}}">编辑</a>
+                        <a class="btn btn-sm btn-danger" href="/admin/produit/del?id={{@$value._id}}">删除</a>
+                    </td>
+                </tr>
+                {{/each}}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+{{ include '../common/footer.html'}}

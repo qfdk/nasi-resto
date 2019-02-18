@@ -1,0 +1,41 @@
+{{ include '../common/header.html'}}
+<div class="container">
+    <div class="jumbotron">
+        <div class="container">
+            <h2>分类管理</h2>
+            <p>方便简单的分类管理页面 ...</p>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>分类名称</th>
+                    <th>分类备注</th>
+                    <th>首页显示</th>
+                    <th>排序</th>
+                    <th>操作</th>
+                </tr>
+                {{each list}}
+                <tr>
+                    <td>{{$value.name}}</td>
+                    <td>{{$value.desc}}</td>
+                    {{if($value.showIndex)}}
+                    <td>是</td>
+                    {{else}}
+                    <td>否</td>
+                    {{/if}}
+                    <td>{{$value.sort_order}}</td>
+
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="/admin/categorie/edit?id={{@$value._id}}">编辑</a>
+                        <a class="btn btn-sm btn-danger" href="/admin/categorie/del?id={{@$value._id}}">删除</a>
+                    </td>
+                </tr>
+                {{/each}}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+{{ include '../common/footer.html'}}

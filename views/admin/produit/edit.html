@@ -1,0 +1,81 @@
+{{ include '../common/header.html'}}
+<div class="container">
+    <div class="jumbotron">
+        <div class="container">
+            <h2>添加产品管理</h2>
+            <p>方便简单的产品管理页面 ...</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="panel panel-default">
+                <div class="bs-example">
+                    <form enctype="multipart/form-data" action="/admin/produit/doEdit" method="POST"
+                        class="form-horizontal">
+                        <br>
+                        <input type="hidden" name="_id" value="{{@data._id}}">
+                        <div class="form-group"><label class="col-md-4 control-label">产品名：</label>
+                            <div class="col-md-4"><input name="name" value="{{data.name}}" type="text"
+                                    required="required" class="form-control"></div>
+                        </div>
+                        <div class="form-group"><label class="col-md-4 control-label">备注：</label>
+                            <div class="col-md-4"><input name="desc" value="{{data.desc}}" type="text"
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-md-4 control-label">分类：</label>
+                            <div class="col-md-4">
+                                <select name="cat_id">
+                                    {{each categories }}
+                                    <option value="{{@$value._id}}" {{if(data.cat_id==$value._id)}}selected{{/if}}>
+                                        {{$value.name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-md-4 control-label">排序：</label>
+                            <div class="col-md-4"><input name="sort_order" value="{{data.sort_order}}" type="text"
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-md-4 control-label">首页显示：</label>
+                            <div class="col-md-4">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="is_on_sale" value="true" {{if(data.is_on_sale)}}
+                                            checked {{/if}}>是
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="is_on_sale" value="false" {{if(!data.is_on_sale)}}
+                                            checked {{/if}}>否
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-md-4 control-label">prix：</label>
+                            <div class="col-md-4"><input name="price" value="{{data.price}}" type="text"
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">图片：</label>
+                            <div class="col-md-4">
+                                <input name="image" value="" type="file" accept="image/*" class="form-control"></div>
+                            <small>建议尺寸：1500x720</small>
+                        </div>
+                        <input type="hidden" name="imageSrc" value="{{@data.image}}">
+                        <div class="form-group text-center">
+                            <img class="img-rounded" src="/upload/{{@data.image}}" alt="image">
+                        </div>
+                        <div class="form-group" style="text-align: center;">
+                            <input type="submit" class="btn btn-primary"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ include '../common/footer.html'}}

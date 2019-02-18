@@ -1,0 +1,82 @@
+{{ include '../common/header.html'}}
+<div class="container">
+    <div class="jumbotron">
+        <div class="container">
+            <h2>添加分类管理</h2>
+            <p>方便简单的菜单管理页面 ...</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="panel panel-default">
+                <div class="bs-example">
+                    <form enctype="multipart/form-data" action="/admin/produit/doAdd" method="POST"
+                        class="form-horizontal">
+                        <br>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">菜名：</label>
+                            <div class="col-md-4">
+                                <input name="name" value="" type="text" required="required" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">备注：</label>
+                            <div class="col-md-4">
+                                <input name="desc" value="" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">分类：</label>
+                            <div class="col-md-4">
+                                <select name="cat_id">
+                                    {{each categories }}
+                                    <option value="{{@$value._id}}">{{$value.name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">上架：</label>
+                            <div class="col-md-4">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" autocomplete="off" name="is_on_sale" value=true checked>是
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" autocomplete="off" name="is_on_sale" value=false>否
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">价格：</label>
+                            <div class="col-md-4">
+                                <input name="price" value="" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">排序：</label>
+                            <div class="col-md-4">
+                                <input name="sort_order" value="0" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">图片：</label>
+                            <div class="col-md-4">
+                                <input name="image" value="" type="file" accept="image/*" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 col-md-offset-4">
+                                <input type="submit" class="btn btn-primary">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ include '../common/footer.html'}}

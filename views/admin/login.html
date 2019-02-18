@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:color="http://www.w3.org/1999/xhtml">
+<head>
+    <title>后台登录</title>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/webjars/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/admin/css/login.css">
+</head>
+<body>
+<div class="container">
+    <form action="/admin/login/doLogin" method="POST" class="form-signin">
+        <h2 class="form-signin-heading">后台管理登录</h2>
+        <label for="username" class="control-label">用户名</label>
+        <input type="text" name="username" id="username" class="form-control" value="admin">
+        <label for="password" class="control-label">密码</label>
+        <input type="password" name="password" id="password" class="form-control">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+    </form>
+</div>
+<script src="//cdn.jsdelivr.net/webjars/jquery/3.1.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>
