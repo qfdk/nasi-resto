@@ -1,6 +1,6 @@
 var router = require('koa-router')()
 var DB = require('../../model/db');
-var upload = require('../../utile/tools');
+var tools = require('../../utile/tools');
 
 router.get('/', async (ctx, next) => {
     ctx.render('admin/produit/list');
@@ -22,7 +22,7 @@ router.post('/doAdd', async (ctx, next) => {
     tmp.price = parseFloat(req.price);
     tmp.sort_order = req.sort_order;
     tmp.is_on_sale = Boolean.parse(req.is_on_sale);
-    tmp.image = ctx.request.files.image.name ? upload(ctx.request.files.image) : null;
+    tmp.image = ctx.request.files.image.name ? tools.upload(ctx.request.files.image) : null;
     await DB.insert('produits', tmp);
     ctx.redirect('/admin/produit/list');
 })
@@ -47,7 +47,7 @@ router.post('/doEdit', async (ctx, next) => {
     tmp.price = parseFloat(req.price);
     tmp.sort_order = req.sort_order;
     tmp.is_on_sale = Boolean.parse(req.is_on_sale);
-    tmp.image = ctx.request.files.image.name ? upload(ctx.request.files.image) : req.imageSrc;
+    tmp.image = ctx.request.files.image.name ? tools.upload(ctx.request.files.image) : req.imageSrc;
     await DB.update('produits', { "_id": DB.getObjectID(req._id) }, tmp);
     ctx.redirect('/admin/produit/list');
 })

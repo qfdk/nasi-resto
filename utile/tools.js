@@ -1,4 +1,4 @@
-function upload(uploadFile) {
+exports.upload = (uploadFile) => {
     const fs = require('fs');
     const path = require('path');
     // 上传单个文件
@@ -14,5 +14,3 @@ function upload(uploadFile) {
     reader.pipe(upStream);
     return newFilename;
 }
-
-module.exports = upload;

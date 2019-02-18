@@ -1,6 +1,6 @@
 var router = require('koa-router')()
 var DB = require('../../model/db');
-var upload = require('../../utile/tools');
+var tools = require('../../utile/tools');
 
 Boolean.parse = function (str) {
     if (str) {
@@ -28,7 +28,7 @@ router.post('/doAdd', async (ctx, next) => {
     tmp.sort_order = req.sort_order;
     tmp.image_text = req.image_text;
     tmp.showIndex = Boolean.parse(req.showIndex);
-    tmp.image = ctx.request.files.image.name ? upload(ctx.request.files.image) : req.imageSrc;
+    tmp.image = ctx.request.files.image.name ? tools.upload(ctx.request.files.image) : req.imageSrc;
     await DB.insert('categories', tmp);
     ctx.redirect('/admin/categorie/list');
 })
@@ -59,7 +59,7 @@ router.post('/doEdit', async (ctx, next) => {
     tmp.sort_order = req.sort_order;
     tmp.image_text = req.image_text;
     tmp.showIndex = Boolean.parse(req.showIndex);
-    tmp.image = ctx.request.files.image.name ? upload(ctx.request.files.image) : req.imageSrc;
+    tmp.image = ctx.request.files.image.name ? tools.upload(ctx.request.files.image) : req.imageSrc;
     await DB.update('categories', { "_id": DB.getObjectID(req._id) }, tmp);
     ctx.redirect('/admin/categorie/list');
 })
