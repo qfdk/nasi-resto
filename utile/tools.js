@@ -14,3 +14,16 @@ exports.upload = (uploadFile) => {
     reader.pipe(upStream);
     return newFilename;
 }
+
+exports.parseBool = function (str) {
+    if (str) {
+        switch (str.toLowerCase()) {
+            case "true":
+                return true;
+            case "false":
+                return false;
+            default:
+                throw new Error("Boolean.parse: Cannot convert string to boolean.");
+        }
+    }
+};

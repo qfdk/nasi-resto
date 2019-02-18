@@ -5,7 +5,7 @@ const login = require('./admin/login')
 var url = require('url');
 
 router.use(async (ctx, next) => {
-  ctx.state.title = 'test'
+  ctx.state.title = require('../model/config').site.title;
   await next();
 });
 

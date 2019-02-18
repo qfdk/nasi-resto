@@ -21,7 +21,7 @@ router.post('/doAdd', async (ctx, next) => {
     tmp.cat_id = req.cat_id;
     tmp.price = parseFloat(req.price);
     tmp.sort_order = req.sort_order;
-    tmp.is_on_sale = Boolean.parse(req.is_on_sale);
+    tmp.is_on_sale = tools.parseBool(req.is_on_sale);
     tmp.image = ctx.request.files.image.name ? tools.upload(ctx.request.files.image) : null;
     await DB.insert('produits', tmp);
     ctx.redirect('/admin/produit/list');
@@ -46,7 +46,7 @@ router.post('/doEdit', async (ctx, next) => {
     tmp.cat_id = req.cat_id;
     tmp.price = parseFloat(req.price);
     tmp.sort_order = req.sort_order;
-    tmp.is_on_sale = Boolean.parse(req.is_on_sale);
+    tmp.is_on_sale = tools.parseBool(req.is_on_sale);
     tmp.image = ctx.request.files.image.name ? tools.upload(ctx.request.files.image) : req.imageSrc;
     await DB.update('produits', { "_id": DB.getObjectID(req._id) }, tmp);
     ctx.redirect('/admin/produit/list');
@@ -63,18 +63,5 @@ router.get('/list', async (ctx, next) => {
         produits: await DB.find('produits', {})
     });
 })
-
-Boolean.parse = function (str) {
-    if (str) {
-        switch (str.toLowerCase()) {
-            case "true":
-                return true;
-            case "false":
-                return false;
-            default:
-                throw new Error("Boolean.parse: Cannot convert string to boolean.");
-        }
-    }
-};
 
 module.exports = router.routes()
