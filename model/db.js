@@ -1,7 +1,7 @@
 var MongoDb = require('mongodb');
 var MongoClient = MongoDb.MongoClient;
 var ObjectID = MongoDb.ObjectID;
-var config = require('./config.js');
+var config = require('../utile/config.js');
 
 class Db {
     static getInstance() {
