@@ -9,11 +9,10 @@ router.get('/categories', async (ctx, next) => {
     ctx.body = await DB.find('categories', { 'parent_id': '0', 'showIndex': true });
 });
 
-router.get('/categories/:id', async (ctx, next) => {
+router.get('/categories/:name', async (ctx, next) => {
     var condition = {
-        'parent_id': ctx.params.id
+        'name': ctx.params.name
     }
-    console.log(ctx.params.id)
     ctx.body = await DB.find('categories', condition);
 });
 

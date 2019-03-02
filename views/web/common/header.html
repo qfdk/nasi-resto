@@ -73,8 +73,13 @@
                         <li class="has-dropdown">
                             <a href="#">Menu</a>
                             <ul id="menu" class="dropdown">
-                                {{each categories}}
-                                <li><a href="/api/produits/{{@$value._id}}">{{$value.name}}</a></li>
+                                {{each categories values key}}
+                                <li><a href="/api/categories/{{key}}">{{key}}</a></li>
+                                    {{if(values.length>0)}}
+                                        {{each values sousMenu}}
+                                            <li><a href="/api/produits/{{sousMenu.parent_id}}">|--- {{sousMenu.name}}</a></li>
+                                        {{/each}}
+                                    {{/if}}
                                 {{/each}}
                             </ul>
                         </li>
