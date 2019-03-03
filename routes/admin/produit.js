@@ -7,7 +7,7 @@ router.get('/', async (ctx, next) => {
 })
 
 router.get('/add', async (ctx, next) => {
-    var categories = await DB.find('categories', { 'parent_id': '0' });
+    var categories = await DB.find('categories', { });
     await ctx.render('admin/produit/add', {
         categories: categories
     });

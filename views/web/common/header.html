@@ -66,7 +66,7 @@
                                 <li><a href="/api/categories/{{key}}">{{key}}</a></li>
                                     {{if(values.length>0)}}
                                         {{each values sousMenu}}
-                                            <li><a href="/api/produits/{{sousMenu.parent_id}}">|--- {{sousMenu.name}}</a></li>
+                                            <li><a href="/api/produits/{{@sousMenu._id}}">|--- {{sousMenu.name}}</a></li>
                                         {{/each}}
                                     {{/if}}
                                 {{/each}}
