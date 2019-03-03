@@ -2,7 +2,11 @@ const router = require('koa-router')()
 const DB = require('../model/db');
 
 router.use(async (ctx, next) => {
-    //ctx.state.categories = await DB.find('categories', {'parent_id': '0', 'showIndex': true});
+    ctx.state.site = require('../utile/config').site
+    await next();
+  });
+  
+router.use(async (ctx, next) => {
     ctx.state.categories = {};
     var tmp = await DB.find('categories', { 'parent_id': '0', 'showIndex': true });    // console.log(sousMenu)
     for (var i = 0; i < tmp.length; i++) {
