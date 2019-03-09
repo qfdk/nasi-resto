@@ -1,7 +1,7 @@
 {{include './common/header'}}
 
 <header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner"
-        style="background-image: url(images/img_bg_1.jpg)" data-stellar-background-ratio="0.5">
+    style="background-image: url(images/img_bg_1.jpg)" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="gtco-container">
         <div class="row">
@@ -15,28 +15,28 @@
         </div>
 </header>
 
-
+{{ each produits values key}}
+{{if (values.produits.length>0)}}
 <div class="gtco-section">
     <div class="gtco-container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-                <h2 class="cursive-font primary-color">Popular Dishes</h2>
-                <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident.
-                    Odit ab aliquam dolor eius.</p>
+                <h2 class="cursive-font primary-color">{{key}}</h2>
+                <p>{{values.desc}}</p>
             </div>
         </div>
         <div class="row">
-            {{ each produits}}
+            {{each values.produits produit}}
             <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="upload/{{$value.image}}" class="fh5co-card-item image-popup">
+                <a href="upload/{{produit.image}}" class="fh5co-card-item image-popup">
                     <figure>
                         <div class="overlay"><i class="ti-plus"></i></div>
-                        <img src="upload/{{$value.image}}" alt="Image" class="img-responsive">
+                        <img src="upload/{{produit.image}}" alt="Image" class="img-responsive">
                     </figure>
                     <div class="fh5co-text">
-                        <h2>{{$value.name}}</h2>
-                        <p>{{$value.desc}}</p>
-                        <p><span class="price cursive-font">{{$value.price}} EUR</span></p>
+                        <h2>{{produit.name}}</h2>
+                        <p>{{produit.desc}}</p>
+                        <p><span class="price cursive-font">{{produit.price}} EUR</span></p>
                     </div>
                 </a>
             </div>
@@ -44,5 +44,7 @@
         </div>
     </div>
 </div>
+{{/if}}
+{{/each}}
 
 {{include './common/footer'}}

@@ -8,7 +8,7 @@ router.use(async (ctx, next) => {
 
 router.use(async (ctx, next) => {
     ctx.state.categories = {};
-    var tmp = await DB.find('categories', {'parent_id': '0', 'showIndex': true});    // console.log(sousMenu)
+    var tmp = await DB.find('categories', { 'parent_id': '0', 'showIndex': true });    // console.log(sousMenu)
     for (var i = 0; i < tmp.length; i++) {
         var sousMenu = await DB.find('categories', {
             'parent_id': DB.getObjectID(tmp[i]._id).toString(),
@@ -20,10 +20,19 @@ router.use(async (ctx, next) => {
 });
 
 router.get('/', async (ctx, next) => {
-    var produits = await DB.find('produits', {'is_on_sale': true});
+    var categories = await DB.find('categories', { 'parent_id': '0', 'showIndex': true });
+    var map = {};
+    for (var i = 0; i < categories.length; i++) {
+
+        var produits = await DB.find('produits', { 'is_on_sale': true,'cat_id':categories[i]._id.toString() });
+        var tmp={};
+        tmp['produits']= produits;
+        tmp['desc'] = categories[i].desc;
+        map[categories[i].name] = tmp;
+    }
     await ctx.render('web/index',
         {
-            produits: produits
+            produits: map
         })
 })
 router.get('/index', async (ctx, next) => {
