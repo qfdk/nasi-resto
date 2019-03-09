@@ -7,7 +7,7 @@
 .DS_Store
 .AppleDouble
 .LSOverride
-public/upload/*.jpg
+public/upload/*.*
 # Icon must end with two \r
 Icon
 
