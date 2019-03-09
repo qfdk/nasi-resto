@@ -7,7 +7,7 @@ exports.upload = (uploadFile) => {
     const reader = fs.createReadStream(file.path);
     var myDate = new Date();
     var newFilename = 'upload_' + myDate.getTime() + '.' + file.name.split('.')[1];
-    let filePath = path.join(__dirname, '../public/upload/') + `/${newFilename}`;
+    let filePath = path.join(__dirname, '../public/upload/') + `${newFilename}`;
     // 创建可写流
     const upStream = fs.createWriteStream(filePath);
     // 可读流通过管道写入可写流
